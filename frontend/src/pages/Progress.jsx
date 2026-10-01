@@ -11,7 +11,7 @@ import {
 import { glassCard, GRADIENTS } from "../theme";
 import { kgToUnit, weightLabel } from "../utils/units";
 
-const API = "https://wiring-archive-lenses-furnished.trycloudflare.com/api";
+const API = "http://localhost:5000/api";
 const authHeaders = () => ({
   "Content-Type": "application/json",
   Authorization: `Bearer ${localStorage.getItem("flexion_token")}`,
@@ -29,8 +29,8 @@ const fadeUp = {
 
 const inputSx = {
   "& .MuiOutlinedInput-root": {
-    borderRadius: "12px", background: "var(----t5)",
-    "& fieldset": { borderColor: "var(----t12)" },
+    borderRadius: "12px", background: "var(--t5)",
+    "& fieldset": { borderColor: "var(--t12)" },
     "&:hover fieldset": { borderColor: "rgba(34,211,238,0.55)" },
     "&.Mui-focused fieldset": { borderColor: "#22d3ee" },
     "& input, & textarea": { color: "text.primary", fontWeight: 600 },
@@ -175,7 +175,7 @@ export default function Progress() {
                     </defs>
                     <XAxis dataKey="date" tick={{ fill: "#9ca3af", fontSize: 11.5, fontWeight: 600 }} axisLine={false} tickLine={false} dy={6} />
                     <YAxis hide domain={["dataMin - 1", "dataMax + 1"]} />
-                    <RTooltip contentStyle={{ background: "var(--chat-bg)", border: "1px solid var(----t12)", borderRadius: "14px", fontWeight: 700, fontSize: 12, boxShadow: "0 12px 32px rgba(0,0,0,0.45)" }}
+                    <RTooltip contentStyle={{ background: "var(--chat-bg)", border: "1px solid var(--t12)", borderRadius: "14px", fontWeight: 700, fontSize: 12, boxShadow: "0 12px 32px rgba(0,0,0,0.45)" }}
                       formatter={(v) => [`${v} ${units}`, "Weight"]} />
                     <Area type="monotone" dataKey="kg" stroke="#22d3ee" strokeWidth={3} fill="url(#progGrad)"
                       dot={{ r: 4, fill: "#22d3ee", strokeWidth: 0 }} activeDot={{ r: 6, fill: "#a855f7" }} animationDuration={1200} />
@@ -197,8 +197,8 @@ export default function Progress() {
                   <BarChart data={lifts}>
                     <XAxis dataKey="date" tick={{ fill: "#9ca3af", fontSize: 11.5, fontWeight: 600 }} axisLine={false} tickLine={false} dy={6} />
                     <YAxis hide />
-                    <RTooltip cursor={{ fill: "var(----t5)" }}
-                      contentStyle={{ background: "var(--chat-bg)", border: "1px solid var(----t12)", borderRadius: "14px", fontWeight: 700, fontSize: 12, boxShadow: "0 12px 32px rgba(0,0,0,0.45)" }}
+                    <RTooltip cursor={{ fill: "var(--t5)" }}
+                      contentStyle={{ background: "var(--chat-bg)", border: "1px solid var(--t12)", borderRadius: "14px", fontWeight: 700, fontSize: 12, boxShadow: "0 12px 32px rgba(0,0,0,0.45)" }}
                       formatter={(v) => [`${v} ${units}`, "Max lift"]} />
                     <Bar dataKey="kg" radius={[8, 8, 0, 0]} animationDuration={1200}>
                       {lifts.map((_, i) => <Cell key={i} fill={i === lifts.length - 1 ? "#a855f7" : "#22d3ee"} />)}
@@ -221,7 +221,7 @@ export default function Progress() {
                     { label: "Hips", value: latest.hips },
                     { label: "Arm", value: latest.arm },
                   ].filter((m) => m.value).map((m) => (
-                    <Box key={m.label} sx={{ p: 1.4, borderRadius: "12px", background: "var(----t3)", border: "1px solid var(----t8)" }}>
+                    <Box key={m.label} sx={{ p: 1.4, borderRadius: "12px", background: "var(--t3)", border: "1px solid var(--t8)" }}>
                       <Typography sx={{ fontSize: 10.5, fontWeight: 700, color: "text.secondary", letterSpacing: "0.06em" }}>{m.label.toUpperCase()}</Typography>
                       <Typography sx={{ fontSize: 18, fontWeight: 800, color: "#22d3ee" }}>{m.value} cm</Typography>
                     </Box>
@@ -245,7 +245,7 @@ export default function Progress() {
                 <motion.div key={e._id} layout initial={{ opacity: 0, x: -14 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0 }} transition={{ delay: i * 0.04 }}>
                   <Box sx={{
                     display: "flex", alignItems: "center", gap: 1.5, py: 1.3, flexWrap: "wrap",
-                    borderBottom: i < entries.length - 1 ? "1px solid var(----t5)" : "none",
+                    borderBottom: i < entries.length - 1 ? "1px solid var(--t5)" : "none",
                   }}>
                     <Typography sx={{ fontWeight: 700, fontSize: 13, width: 110, flexShrink: 0 }}>
                       {new Date(e.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
@@ -268,8 +268,15 @@ export default function Progress() {
       )}
 
       {/* Log entry dialog */}
-      <Dialog open={open} onClose={() => setOpen(false)} maxWidth="sm" fullWidth
-        PaperProps={{ sx: { background: "var(--chat-bg)", borderRadius: "20px", border: "1px solid var(----t12)" } }}>
+      <Dialog
+        open={open}
+        onClose={() => setOpen(false)}
+        maxWidth="sm"
+        fullWidth
+        slotProps={{
+          backdrop: { sx: { backgroundColor: "rgba(5,5,12,0.75)", backdropFilter: "blur(4px)" } },
+          paper: { sx: { background: "var(--chat-bg)", backgroundImage: "none", borderRadius: "20px", border: "1px solid var(--t12)" } },
+        }}>
         <DialogTitle sx={{ fontWeight: 800, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           Log progress entry
           <IconButton onClick={() => setOpen(false)} sx={{ color: "text.secondary" }}><X size={18} /></IconButton>
