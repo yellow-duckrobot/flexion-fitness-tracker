@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap");
+
+body {
+  margin: 0;
+  background: #0a0a14;
+}
+
+/* Subtle ambient glow behind the app */
+.app-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(600px 400px at 15% 0%, rgba(34,211,238,0.12), transparent 60%),
+    radial-gradient(700px 500px at 90% 20%, rgba(168,85,247,0.12), transparent 60%),
+    radial-gradient(500px 400px at 50% 100%, rgba(249,115,22,0.08), transparent 60%);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #0a0a14; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #22d3ee, #a855f7);
+  border-radius: 8px;
+}
+
+/* Shimmering skeleton loader */
+.skeleton {
+  border-radius: 12px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.05) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+@keyframes shimmer {
+  to { background-position: -200% 0; }
+}
+
+/* ---------- mobile hardening ---------- */
+/* never allow horizontal scroll on small screens */
+html, body { overflow-x: hidden; max-width: 100vw; }
+
+/* dialogs get breathing room on phones */
+.MuiDialog-container .MuiPaper-root {
+  margin: 12px !important;
+  width: calc(100% - 24px) !important;
+  max-height: calc(100% - 24px) !important;
+}
+
+/* keep long emails/usernames from breaking layouts */
+.MuiTypography-root { overflow-wrap: anywhere; }
+
+/* bigger touch targets on mobile for icon buttons */
+@media (max-width: 600px) {
+  .MuiIconButton-root { padding: 10px; }
+}
+
+/* charts should never overflow their card */
+.recharts-responsive-container { min-width: 0; }
+
+/* ---------- theme-aware design tokens (set by App.js via data-theme) ---------- */
+:root[data-theme="dark"] {
+  --card-bg: rgba(255,255,255,0.04);
+  --card-border: rgba(255,255,255,0.09);
+  --card-shadow: none;
+  --heat-0: rgba(255,255,255,0.06);
+  --input-bg: rgba(255,255,255,0.05);
+  --chat-bg: #14141f;
+  --t3: rgba(255,255,255,0.03);
+  --t5: rgba(255,255,255,0.05);
+  --t8: rgba(255,255,255,0.08);
+  --t12: rgba(255,255,255,0.12);
+}
+:root[data-theme="light"] {
+  --card-bg: #ffffff;
+  --card-border: rgba(17,24,39,0.08);
+  --card-shadow: 0 6px 24px rgba(17,24,39,0.07);
+  --heat-0: rgba(17,24,39,0.07);
+  --input-bg: rgba(17,24,39,0.04);
+  --chat-bg: #ffffff;
+  --t3: rgba(17,24,39,0.04);
+  --t5: rgba(17,24,39,0.06);
+  --t8: rgba(17,24,39,0.10);
+  --t12: rgba(17,24,39,0.14);
+}
+
+/* light-mode autofill: white background instead of forced dark */
+:root[data-theme="light"] input:-webkit-autofill,
+:root[data-theme="light"] input:-webkit-autofill:hover,
+:root[data-theme="light"] input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
+  -webkit-text-fill-color: #111827 !important;
+}
+
+/* light-mode scrollbar */
+:root[data-theme="light"] ::-webkit-scrollbar-track { background: #eef1f7; }
+:root[data-theme="light"] ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #0891b2, #7c3aed); }
+
+/* light theme body + ambient glow softening */
+:root[data-theme="light"] body { background: #eef1f7; }
+
+/* ---------- bold, readable floating labels (all pages) ---------- */
+.MuiInputLabel-root { font-weight: 700 !important; }
+.MuiInputLabel-root.MuiInputLabel-shrink,
+.MuiInputLabel-root[data-shrink="true"] {
+  color: #22d3ee !important;
+  font-weight: 800 !important;
+  background: var(--chat-bg);
+  padding: 0 6px;
+  border-radius: 4px;
+  z-index: 1;
+}

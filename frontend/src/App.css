@@ -1,0 +1,170 @@
+/* Animated gradient background */
+body, #root {
+  height: 100vh;
+  margin: 0;
+  background: linear-gradient(-45deg, #ff6ec4, #7873f5, #4ade80, #facc15);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes gradientBG {
+  0% {background-position:0% 50%;}
+  50% {background-position:100% 50%;}
+  100% {background-position:0% 50%;}
+}
+
+/* Glassmorphic card */
+.glass-card {
+  width: 400px;
+  padding: 40px 32px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(12px);
+  box-shadow:
+    0 4px 30px rgba(0, 0, 0, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+  color: #fff;
+  box-sizing: border-box;
+}
+
+/* Floating labels & input style */
+.floating-input {
+  position: relative;
+  margin-bottom: 32px;
+}
+
+.floating-input input {
+  width: 100%;
+  padding: 16px 12px 8px 40px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+  color: #fff;
+  font-size: 1.1rem;
+  outline: none;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.floating-input input:focus {
+  border-color: #4ade80;
+  box-shadow: 0 0 8px #4ade80;
+}
+
+.floating-input label {
+  position: absolute;
+  left: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  font-weight: 500;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.floating-input input:focus + label,
+.floating-input input:not(:placeholder-shown) + label {
+  top: 0;
+  font-size: 0.8rem;
+  color: #4ade80;
+}
+
+/* Icons in inputs */
+.floating-input svg {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  fill: #4ade80;
+  opacity: 0.8;
+}
+
+/* Gradient button with shine */
+.shine-button {
+  margin-top: 16px;
+  width: 100%;
+  padding: 16px 0;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(45deg, #ff6ec4, #7873f5);
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 18px rgba(255, 110, 196, 0.6);
+  transition: box-shadow 0.3s ease;
+}
+
+.shine-button:hover {
+  box-shadow: 0 12px 24px rgba(120, 115, 245, 0.9);
+}
+
+.shine-button::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -25%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.6), transparent);
+  transform: skewX(-25deg);
+  transition: left 0.6s ease;
+}
+
+.shine-button:hover::before {
+  left: 125%;
+}
+
+/* Success checkmark animation */
+.checkmark {
+  display: block;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  stroke-width: 3;
+  stroke: #4ade80;
+  stroke-miterlimit: 10;
+  margin: 0 auto 20px auto;
+  box-shadow: 0 0 8px #4ade80;
+  animation: pulse 1s ease forwards;
+}
+
+.checkmark__circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 3;
+  stroke-miterlimit: 10;
+  stroke: #4ade80;
+  fill: none;
+  animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark__check {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: stroke 0.3s 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+@keyframes stroke {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}

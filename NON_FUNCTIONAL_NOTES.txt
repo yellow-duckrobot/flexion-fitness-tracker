@@ -1,0 +1,43 @@
+FLEXION — NON-FUNCTIONAL REQUIREMENTS: IMPLEMENTATION NOTES
+===========================================================
+
+PERFORMANCE
+- gzip response compression (compression middleware) — smaller payloads, faster loads
+- MongoDB indexes on all user-owned collections (user field indexed on User/Workout/Meal/Progress/Feedback)
+- Pagination support on list endpoints (?page=1&limit=50); un-paginated calls capped at 200 records
+- Frontend: PWA static-asset caching, skeleton loaders, count-up/chart animations run on rAF
+- Rate limiting keeps the API responsive under load (no single IP can spam)
+
+SCALABILITY / CONCURRENT USERS
+- Stateless JWT auth — any server instance can serve any request (horizontal scaling ready)
+- MongoDB handles concurrent connections natively; indexes keep queries fast as data grows
+- Uploaded files served statically with 7-day cache headers
+
+SECURITY
+- Passwords: bcrypt (cost 12), never returned by queries (select: false)
+- Auth: JWT (7-day expiry) via Authorization: Bearer header
+- Authorization: every workout/meal/progress/feedback query is scoped to req.user._id — users can only touch their own data (verified via findOneAndUpdate/Delete with { _id, user } filters)
+- helmet: security headers (X-Frame-Options, nosniff, HSTS-ready)
+- Rate limiting: 300 req/15min global, 30 req/15min on auth endpoints (brute-force protection)
+- Body size capped at 2mb; uploads restricted to images, max 5mb, unique server-side filenames
+- Deploy over HTTPS (Vercel/Netlify provide this free) to satisfy encryption-in-transit
+
+PRIVACY / GDPR
+- Right to access: GET /api/users/me/export returns a complete JSON dump (profile, workouts, meals, progress, feedback)
+- Right to erasure: DELETE /api/users/me deletes the account + ALL associated data + uploaded photos
+- Consent: registration requires explicit consent checkbox
+- Minimal data: only name/username/email/password collected; search endpoint returns public fields only
+
+RELIABILITY
+- Automated backups: backup.bat / backup.sh using mongodump — schedule daily via Task Scheduler / cron
+- Health endpoint: GET /health returns status + uptime for monitoring
+- Centralized error handler; failed MongoDB connection exits cleanly (container orchestrators can restart)
+- 99% uptime target achievable via free-tier hosting (Vercel frontend + Render/Railway backend) with keep-alive pings
+
+USABILITY / ACCESSIBILITY
+- Consistent navigation (sidebar/bottom nav), responsive design, theme preference
+- Icon buttons carry aria-label/title attributes; form inputs labeled; focus states visible (MUI defaults)
+- Color contrast: dark theme uses WCAG-compliant text colors on #0a0a14
+
+CROSS-BROWSER
+- React 19 + standard CSS (no vendor-only APIs). Notifications require secure context (localhost/HTTPS) — degrade silently elsewhere
