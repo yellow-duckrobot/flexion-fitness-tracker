@@ -18,7 +18,7 @@ import { kgToUnit, weightLabel } from "../utils/units";
 import ActivityHeatmap from "../components/ActivityHeatmap";
 import { GOAL_PLANS } from "../utils/goals";
 
-const API = "http://localhost:5000/api";
+const API = "https://wiring-archive-lenses-furnished.trycloudflare.com/api";
 const authHeaders = () => ({
   "Content-Type": "application/json",
   Authorization: `Bearer ${localStorage.getItem("flexion_token")}`,
@@ -102,7 +102,7 @@ export default function Dashboard() {
   const confettiFired = useRef(false);
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("flexion_user") || "{}");
-  const avatarUrl = user.profilePicture ? `http://localhost:5000${user.profilePicture}` : null;
+  const avatarUrl = user.profilePicture ? `https://wiring-archive-lenses-furnished.trycloudflare.com${user.profilePicture}` : null;
 
   const [workouts, setWorkouts] = useState([]);
   const [meals, setMeals] = useState([]);
@@ -326,12 +326,12 @@ export default function Dashboard() {
 
           <Box sx={{ display: "flex", alignItems: "center", gap: 1.2, flexShrink: 0, ml: { xs: "auto", md: 0 } }}>
             {/* Global search */}
-            <Box sx={{ position: "relative", display: { xs: "none", md: "block" } }}>
+            <Box sx={{ position: "relative", width: { xs: "100%", md: "auto" }, order: { xs: 3, md: 0 }, mt: { xs: 1, md: 0 } }}>
               <TextField
                 size="small" value={q} onChange={(e) => setQ(e.target.value)}
                 placeholder="Search workouts, meals, users…"
                 sx={{
-                  width: { xs: 170, md: 260 },
+                 width: { xs: "100%", md: 260 },
                   "& .MuiOutlinedInput-root": {
                     borderRadius: "12px", background: "var(----t5)",
                     "& fieldset": { borderColor: "var(----t12)" },
@@ -385,7 +385,7 @@ export default function Dashboard() {
                           <Typography sx={{ fontSize: 10.5, fontWeight: 800, color: "text.disabled", letterSpacing: "0.1em", px: 1, py: 0.6 }}>USERS</Typography>
                           {results.users.map((u) => (
                             <Box key={u._id} sx={{ display: "flex", alignItems: "center", gap: 1.2, px: 1, py: 0.9, borderRadius: "10px" }}>
-                              <Avatar src={u.profilePicture ? `http://localhost:5000${u.profilePicture}` : null}
+                              <Avatar src={u.profilePicture ? `https://wiring-archive-lenses-furnished.trycloudflare.com${u.profilePicture}` : null}
                                 sx={{ width: 26, height: 26, fontSize: 12, fontWeight: 800, background: GRADIENTS.fire }}>
                                 {u.name?.charAt(0).toUpperCase()}
                               </Avatar>
