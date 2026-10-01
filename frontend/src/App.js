@@ -20,7 +20,7 @@ function Protected({ children }) {
 
   useEffect(() => {
     if (!token) return setStatus("out");
-    fetch("http://localhost:5000/api/users/me", {
+    fetch("https://wiring-archive-lenses-furnished.trycloudflare.com/api/users/me", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((r) => {

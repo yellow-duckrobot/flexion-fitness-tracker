@@ -10,7 +10,7 @@ import confetti from "canvas-confetti";
 import { GRADIENTS } from "../theme";
 import { useNavigate } from "react-router-dom";
 
-const API = "http://localhost:5000/api";
+const API = "https://wiring-archive-lenses-furnished.trycloudflare.com/api";
 
 /* ---------- Left visual panel: floating glass stat chips ---------- */
 function VisualPanel() {
@@ -180,7 +180,7 @@ function AuthForm() {
       <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }} style={{ width: "100%", maxWidth: 420 }}>
         {/* mobile-only logo */}
         <Box sx={{ display: { xs: "flex", md: "none" }, alignItems: "center", gap: 1.2, mb: 4 }}>
-          <Box sx={{ width: 38, height: 38, borderRadius: "11px", background: GRADIENTS.primary, display: "grid", placeItems: "center", fontWeight: 800, color: "#fff" }}>F</Box>
+          <Box component="img" src="/icon-64.png" alt="Flexion logo" sx={{ width: 38, height: 38, borderRadius: "10px", display: "block" }} />
           <Typography sx={{ fontWeight: 800, letterSpacing: "0.06em" }}>FLEXION</Typography>
         </Box>
 

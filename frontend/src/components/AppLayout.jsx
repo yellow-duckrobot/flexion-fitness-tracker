@@ -9,7 +9,7 @@ import Coach from "./Coach";
 import Mascot from "./Mascot";
 import { GRADIENTS } from "../theme";
 
-const API = "http://localhost:5000/api";
+const API = "https://wiring-archive-lenses-furnished.trycloudflare.com/api";
 
 const NAV = [
   { to: "/dashboard", icon: <LayoutGrid size={20} />, label: "Dashboard" },
@@ -77,7 +77,7 @@ export default function AppLayout() {
     return () => window.removeEventListener("flexion-user-updated", refreshMe);
   }, []);
 
-  const avatarUrl = me.profilePicture ? `http://localhost:5000${me.profilePicture}` : null;
+  const avatarUrl = me.profilePicture ? `https://wiring-archive-lenses-furnished.trycloudflare.com${me.profilePicture}` : null;
 
   const logout = () => {
     localStorage.removeItem("flexion_token");

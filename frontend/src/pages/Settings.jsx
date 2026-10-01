@@ -11,7 +11,7 @@ import { exportWorkoutsCSV, exportMealsCSV, exportProgressCSV } from "../utils/c
 import { glassCard, GRADIENTS } from "../theme";
 import { requestNotificationPermission } from "../utils/reminders";
 
-const API = "http://localhost:5000/api";
+const API = "https://wiring-archive-lenses-furnished.trycloudflare.com/api";
 const authHeaders = () => ({
   "Content-Type": "application/json",
   Authorization: `Bearer ${localStorage.getItem("flexion_token")}`,
@@ -375,7 +375,7 @@ export default function Settings() {
                 </Button>
                 <Button fullWidth variant="contained" disabled={deleting} onClick={async () => {
                     setDeleting(true);
-                    const res = await fetch("http://localhost:5000/api/users/me", {
+                    const res = await fetch("https://wiring-archive-lenses-furnished.trycloudflare.com/api/users/me", {
                       method: "DELETE",
                       headers: { Authorization: `Bearer ${localStorage.getItem("flexion_token")}` },
                     });
