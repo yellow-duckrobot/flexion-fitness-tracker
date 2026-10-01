@@ -47,7 +47,7 @@ function ScoreRing({ score }) {
   return (
     <Box sx={{ position: "relative", width: 170, height: 170, mx: "auto" }}>
       <svg width="170" height="170" style={{ transform: "rotate(-90deg)" }}>
-        <circle cx="85" cy="85" r={R} fill="none" stroke="var(----t8)" strokeWidth="11" />
+        <circle cx="85" cy="85" r={R} fill="none" stroke="var(--t8)" strokeWidth="11" />
         <motion.circle
           cx="85" cy="85" r={R} fill="none" stroke={color} strokeWidth="11"
           strokeLinecap="round" strokeDasharray={C}
@@ -326,15 +326,15 @@ export default function Dashboard() {
 
           <Box sx={{ display: "flex", alignItems: "center", gap: 1.2, flexShrink: 0, ml: { xs: "auto", md: 0 }, flexWrap: "wrap", justifyContent: { xs: "flex-end", md: "flex-start" }, width: { xs: "100%", md: "auto" } }}>
             {/* Global search */}
-            <Box sx={{ position: "relative", display: { xs: "none", md: "block" } }}>
+            <Box sx={{ position: "relative", width: { xs: "100%", md: "auto" }, order: { xs: 3, md: 0 }, mt: { xs: 0.5, md: 0 } }}>
               <TextField
                 size="small" value={q} onChange={(e) => setQ(e.target.value)}
                 placeholder="Search workouts, meals, users…"
                 sx={{
-                  width: { xs: 170, md: 260 },
+                  width: { xs: "100%", md: 260 },
                   "& .MuiOutlinedInput-root": {
-                    borderRadius: "12px", background: "var(----t5)",
-                    "& fieldset": { borderColor: "var(----t12)" },
+                    borderRadius: "12px", background: "var(--t5)",
+                    "& fieldset": { borderColor: "var(--t12)" },
                     "&:hover fieldset": { borderColor: "rgba(34,211,238,0.5)" },
                     "&.Mui-focused fieldset": { borderColor: "#22d3ee" },
                     "& input": { color: "text.primary", fontWeight: 600, fontSize: 13 },
@@ -348,7 +348,7 @@ export default function Dashboard() {
                 {searchOpen && (
                   <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} style={{ position: "absolute", top: "110%", left: 0, right: 0, zIndex: 200 }}>
                     <Box sx={{
-                      background: "var(--chat-bg)", border: "1px solid var(----t12)",
+                      background: "var(--chat-bg)", border: "1px solid var(--t12)",
                       borderRadius: "16px", p: 1.5, boxShadow: "0 20px 50px rgba(0,0,0,0.5)", maxHeight: 340, overflow: "auto",
                     }}>
                       {["workouts", "meals", "users"].every((k) => results[k].length === 0) && (
@@ -360,7 +360,7 @@ export default function Dashboard() {
                         <>
                           <Typography sx={{ fontSize: 10.5, fontWeight: 800, color: "text.disabled", letterSpacing: "0.1em", px: 1, py: 0.6 }}>WORKOUTS</Typography>
                           {results.workouts.map((w) => (
-                            <Box key={w._id} onClick={() => navigate("/workouts")} sx={{ display: "flex", alignItems: "center", gap: 1.2, px: 1, py: 0.9, borderRadius: "10px", cursor: "pointer", "&:hover": { background: "var(----t5)" } }}>
+                            <Box key={w._id} onClick={() => navigate("/workouts")} sx={{ display: "flex", alignItems: "center", gap: 1.2, px: 1, py: 0.9, borderRadius: "10px", cursor: "pointer", "&:hover": { background: "var(--t5)" } }}>
                               <Dumbbell size={15} color="#22d3ee" />
                               <Typography sx={{ fontSize: 13, fontWeight: 700 }}>{w.name}</Typography>
                               <Typography sx={{ fontSize: 11, color: "text.secondary", ml: "auto" }}>{w.exercises.length} ex.</Typography>
@@ -372,7 +372,7 @@ export default function Dashboard() {
                         <>
                           <Typography sx={{ fontSize: 10.5, fontWeight: 800, color: "text.disabled", letterSpacing: "0.1em", px: 1, py: 0.6 }}>MEALS</Typography>
                           {results.meals.map((m) => (
-                            <Box key={m._id} onClick={() => navigate("/nutrition")} sx={{ display: "flex", alignItems: "center", gap: 1.2, px: 1, py: 0.9, borderRadius: "10px", cursor: "pointer", "&:hover": { background: "var(----t5)" } }}>
+                            <Box key={m._id} onClick={() => navigate("/nutrition")} sx={{ display: "flex", alignItems: "center", gap: 1.2, px: 1, py: 0.9, borderRadius: "10px", cursor: "pointer", "&:hover": { background: "var(--t5)" } }}>
                               <UtensilsCrossed size={15} color="#a855f7" />
                               <Typography sx={{ fontSize: 13, fontWeight: 700, textTransform: "capitalize" }}>{m.mealType}</Typography>
                               <Typography sx={{ fontSize: 11, color: "text.secondary", ml: "auto" }}>{mealKcal(m)} kcal</Typography>
@@ -406,7 +406,7 @@ export default function Dashboard() {
             {/* Notifications bell */}
             <Box sx={{ position: "relative" }}>
               <IconButton onClick={() => setBellOpen(!bellOpen)} sx={{
-                color: bellOpen ? "#22d3ee" : "text.secondary", bgcolor: "var(----t5)",
+                color: bellOpen ? "#22d3ee" : "text.secondary", bgcolor: "var(--t5)",
                 "&:hover": { color: "#22d3ee" },
               }}>
                 <Bell size={19} />
@@ -423,10 +423,10 @@ export default function Dashboard() {
                 {bellOpen && (
                   <motion.div initial={{ opacity: 0, y: -8, scale: 0.97 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: -8, scale: 0.97 }} style={{ position: "absolute", top: "110%", right: 0, zIndex: 200, width: 320 }}>
                     <Box sx={{
-                      background: "var(--chat-bg)", border: "1px solid var(----t12)",
+                      background: "var(--chat-bg)", border: "1px solid var(--t12)",
                       borderRadius: "16px", boxShadow: "0 20px 50px rgba(0,0,0,0.5)", overflow: "hidden",
                     }}>
-                      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", px: 1.8, py: 1.3, borderBottom: "1px solid var(----t8)" }}>
+                      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", px: 1.8, py: 1.3, borderBottom: "1px solid var(--t8)" }}>
                         <Typography sx={{ fontWeight: 800, fontSize: 14 }}>Notifications</Typography>
                         <Button size="small" startIcon={<CheckCheck size={13} />} onClick={markAllRead}
                           sx={{ color: "#22d3ee", fontWeight: 700, fontSize: 11, minWidth: 0 }}>
@@ -443,8 +443,8 @@ export default function Dashboard() {
                           <Box key={i} onClick={() => { setBellOpen(false); navigate(f.link); }}
                             sx={{
                               display: "flex", gap: 1.2, px: 1.8, py: 1.2, cursor: "pointer",
-                              borderBottom: "1px solid var(----t5)",
-                              "&:hover": { background: "var(----t5)" },
+                              borderBottom: "1px solid var(--t5)",
+                              "&:hover": { background: "var(--t5)" },
                             }}>
                             <Box sx={{ width: 7, height: 7, borderRadius: "50%", mt: 0.8, flexShrink: 0, background: unread ? "#22d3ee" : "transparent", boxShadow: unread ? "0 0 8px #22d3ee" : "none" }} />
                             <Box sx={{ flex: 1, minWidth: 0 }}>
@@ -479,7 +479,7 @@ export default function Dashboard() {
         <Box sx={{ gridColumn: { md: "span 4" } }}>
           <Card i={1} sx={{
             height: "100%",
-            background: "linear-gradient(135deg,rgba(34,211,238,0.10),rgba(168,85,247,0.10)), var(----t3)",
+            background: "linear-gradient(135deg,rgba(34,211,238,0.10),rgba(168,85,247,0.10)), var(--t3)",
             display: "flex", flexDirection: "column", justifyContent: "center",
           }}>
             <Box sx={{ display: "flex", justifyContent: "space-between", mb: 2.5 }}>
@@ -531,15 +531,15 @@ export default function Dashboard() {
             ) : (
               <ResponsiveContainer width="100%" height={225}>
                 <BarChart data={weekChart}>
-                  <CartesianGrid vertical={false} stroke="var(----t5)" />
+                  <CartesianGrid vertical={false} stroke="var(--t5)" />
                   <XAxis dataKey="day" tick={{ fill: "#9ca3af", fontSize: 12, fontWeight: 600 }} axisLine={false} tickLine={false} dy={6} />
                   <YAxis hide />
-                  <RTooltip cursor={{ fill: "var(----t5)" }}
-                    contentStyle={{ background: "var(--chat-bg)", border: "1px solid var(----t12)", borderRadius: "14px", fontWeight: 700, fontSize: 12, boxShadow: "0 12px 32px rgba(0,0,0,0.45)" }}
+                  <RTooltip cursor={{ fill: "var(--t5)" }}
+                    contentStyle={{ background: "var(--chat-bg)", border: "1px solid var(--t12)", borderRadius: "14px", fontWeight: 700, fontSize: 12, boxShadow: "0 12px 32px rgba(0,0,0,0.45)" }}
                     formatter={(v) => [`${v.toLocaleString()} kg`, "Volume"]} />
                   <Bar dataKey="vol" radius={[8, 8, 0, 0]} animationDuration={1000}>
                     {weekChart.map((d, i) => (
-                      <Cell key={i} fill={d.isToday ? "#a855f7" : d.vol > 0 ? "#22d3ee" : "var(----t8)"} />
+                      <Cell key={i} fill={d.isToday ? "#a855f7" : d.vol > 0 ? "#22d3ee" : "var(--t8)"} />
                     ))}
                   </Bar>
                 </BarChart>
@@ -611,10 +611,10 @@ export default function Dashboard() {
                       <stop offset="100%" stopColor="#22d3ee" stopOpacity={0} />
                     </linearGradient>
                   </defs>
-                  <CartesianGrid vertical={false} stroke="var(----t5)" />
+                  <CartesianGrid vertical={false} stroke="var(--t5)" />
                   <XAxis dataKey="date" tick={{ fill: "#9ca3af", fontSize: 11, fontWeight: 600 }} axisLine={false} tickLine={false} dy={6} />
                   <YAxis hide domain={["dataMin - 1", "dataMax + 1"]} />
-                  <RTooltip contentStyle={{ background: "var(--chat-bg)", border: "1px solid var(----t12)", borderRadius: "14px", fontWeight: 700, fontSize: 12, boxShadow: "0 12px 32px rgba(0,0,0,0.45)" }}
+                  <RTooltip contentStyle={{ background: "var(--chat-bg)", border: "1px solid var(--t12)", borderRadius: "14px", fontWeight: 700, fontSize: 12, boxShadow: "0 12px 32px rgba(0,0,0,0.45)" }}
                     formatter={(v) => [`${v} kg`, "Weight"]} />
                   <Area type="monotone" dataKey="kg" stroke="#22d3ee" strokeWidth={3} fill="url(#wGrad)"
                     dot={{ r: 4, fill: "#22d3ee", strokeWidth: 0 }} activeDot={{ r: 6, fill: "#a855f7" }} animationDuration={1200} />
@@ -634,7 +634,7 @@ export default function Dashboard() {
               </Box>
             </Box>
             <LinearProgress variant="determinate" value={(water / 8) * 100} sx={{
-              height: 8, borderRadius: 4, mb: 2, bgcolor: "var(----t8)",
+              height: 8, borderRadius: 4, mb: 2, bgcolor: "var(--t8)",
               "& .MuiLinearProgress-bar": { background: "linear-gradient(90deg,#38bdf8,#22d3ee)", borderRadius: 4 },
             }} />
             <Box sx={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 1, flex: 1 }}>
@@ -642,8 +642,8 @@ export default function Dashboard() {
                 <Box key={i} onClick={() => drink(i < water ? i : i + 1)} sx={{
                   display: "grid", placeItems: "center", py: 1.4, borderRadius: "12px", cursor: "pointer",
                   border: "1px solid", transition: "all 0.2s",
-                  borderColor: i < water ? "rgba(56,189,248,0.5)" : "var(----t8)",
-                  background: i < water ? "rgba(56,189,248,0.12)" : "var(----t3)",
+                  borderColor: i < water ? "rgba(56,189,248,0.5)" : "var(--t8)",
+                  background: i < water ? "rgba(56,189,248,0.12)" : "var(--t3)",
                   color: i < water ? "#38bdf8" : "#4b5563",
                   "&:hover": { transform: "translateY(-3px)", borderColor: "#38bdf8" },
                 }}>
@@ -665,8 +665,8 @@ export default function Dashboard() {
             ].map((a) => (
               <Box key={a.label} onClick={a.action} sx={{
                 display: "flex", alignItems: "center", gap: 1.6, p: 1.5, mb: 1.2, borderRadius: "14px", cursor: "pointer",
-                border: "1px solid var(----t8)", transition: "all 0.2s",
-                "&:hover": { background: "var(----t5)", borderColor: "var(--t8)", transform: "translateX(4px)" },
+                border: "1px solid var(--t8)", transition: "all 0.2s",
+                "&:hover": { background: "var(--t5)", borderColor: "var(--t8)", transform: "translateX(4px)" },
               }}>
                 <Box sx={{ width: 38, height: 38, borderRadius: "11px", background: a.grad, display: "grid", placeItems: "center", color: "#fff", flexShrink: 0 }}>
                   {a.icon}
@@ -695,7 +695,7 @@ export default function Dashboard() {
               <motion.div key={w._id} initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4 + i * 0.08 }}>
                 <Box sx={{
                   display: "flex", alignItems: "center", gap: 1.4, py: 1.1,
-                  borderBottom: i < Math.min(workouts.length, 4) - 1 ? "1px solid var(----t8)" : "none",
+                  borderBottom: i < Math.min(workouts.length, 4) - 1 ? "1px solid var(--t8)" : "none",
                 }}>
                   <Box sx={{ width: 32, height: 32, borderRadius: "10px", background: "rgba(34,211,238,0.1)", color: "#22d3ee", display: "grid", placeItems: "center", flexShrink: 0 }}>
                     <Dumbbell size={15} />
@@ -729,7 +729,7 @@ export default function Dashboard() {
               <motion.div key={i} initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.45 + i * 0.08 }}>
                 <Box sx={{
                   display: "flex", alignItems: "center", gap: 1.5, p: 1.2, mb: 1, borderRadius: "12px",
-                  background: "var(----t3)", border: "1px solid var(----t8)",
+                  background: "var(--t3)", border: "1px solid var(--t8)",
                 }}>
                   <Box sx={{ width: 8, height: 8, borderRadius: "50%", background: GRADIENTS.fire, flexShrink: 0 }} />
                   <Typography sx={{ flex: 1, fontSize: 13.5, fontWeight: 700 }}>{pr.lift}</Typography>
@@ -831,8 +831,8 @@ export default function Dashboard() {
                   <motion.div key={i} initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.5 + i * 0.08 }}>
                     <Box onClick={() => navigate(f.link)} sx={{
                       display: "flex", alignItems: "center", gap: 2, p: 1.5, borderRadius: "14px", cursor: "pointer",
-                      border: "1px solid var(----t5)", transition: "background 0.2s, border-color 0.2s",
-                      "&:hover": { background: "var(----t5)", borderColor: "var(----t12)" },
+                      border: "1px solid var(--t5)", transition: "background 0.2s, border-color 0.2s",
+                      "&:hover": { background: "var(--t5)", borderColor: "var(--t12)" },
                     }}>
                       <Box sx={{
                         width: 40, height: 40, borderRadius: "12px", flexShrink: 0,
