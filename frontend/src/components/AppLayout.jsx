@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
-import { Box, Typography, Avatar, IconButton } from "@mui/material";
+import { Box, Typography, Avatar, IconButton, Dialog } from "@mui/material";
 import {
-  LayoutGrid, Dumbbell, UtensilsCrossed, TrendingUp, User, LogOut, Settings as SettingsIcon, LifeBuoy, Gamepad2,
+  LayoutGrid, Dumbbell, UtensilsCrossed, TrendingUp, User, LogOut, Settings as SettingsIcon, LifeBuoy, Gamepad2, MoreHorizontal,
 } from "lucide-react";
 import { startReminderEngine } from "../utils/reminders";
 import Coach from "./Coach";
 import Mascot from "./Mascot";
 import { GRADIENTS } from "../theme";
 
-const API = "https://wiring-archive-lenses-furnished.trycloudflare.com/api";
+const API = "http://localhost:5000/api";
 
 const NAV = [
   { to: "/dashboard", icon: <LayoutGrid size={20} />, label: "Dashboard" },
@@ -52,6 +52,7 @@ export default function AppLayout() {
   const navigate = useNavigate();
   // start with cached user, then refresh from API so new profile pics appear immediately
   const [me, setMe] = useState(() => JSON.parse(localStorage.getItem("flexion_user") || "{}"));
+  const [moreOpen, setMoreOpen] = useState(false);
 
   const refreshMe = () =>
     fetch(`${API}/users/me`, {
@@ -77,7 +78,7 @@ export default function AppLayout() {
     return () => window.removeEventListener("flexion-user-updated", refreshMe);
   }, []);
 
-  const avatarUrl = me.profilePicture ? `https://wiring-archive-lenses-furnished.trycloudflare.com${me.profilePicture}` : null;
+  const avatarUrl = me.profilePicture ? `http://localhost:5000${me.profilePicture}` : null;
 
   const logout = () => {
     localStorage.removeItem("flexion_token");
@@ -138,8 +139,34 @@ export default function AppLayout() {
         borderTop: "1px solid var(----t8)",
         justifyContent: "space-around", px: 1, py: 0.8,
       }}>
-        {NAV.map((n) => <NavItem key={n.to} {...n} mobile />)}
+        {NAV.slice(0, 4).map((n) => <NavItem key={n.to} {...n} mobile />)}
+        <Box component="button" onClick={() => setMoreOpen(true)} sx={{
+          display: "flex", flexDirection: "column", alignItems: "center", gap: 0.3,
+          background: "none", border: 0, cursor: "pointer", color: "#9ca3af", px: 1.2, py: 0.6,
+          fontFamily: "inherit",
+        }}>
+          <MoreHorizontal size={20} />
+          <Box component="span" sx={{ fontSize: 10, fontWeight: 600 }}>More</Box>
+        </Box>
       </Box>
+
+      {/* More sheet — mobile overflow nav */}
+      <Dialog open={moreOpen} onClose={() => setMoreOpen(false)} fullWidth
+        slotProps={{ paper: { sx: { bgcolor: "#12121e", backgroundImage: "none", borderRadius: "20px 20px 0 0", m: 0, position: "fixed", bottom: 0, maxWidth: "100vw !important" } } }}>
+        <Box sx={{ p: 2.2, pb: 4 }}>
+          <Typography sx={{ fontWeight: 800, mb: 1.5, fontSize: 16 }}>More</Typography>
+          {NAV.slice(4).map((n) => (
+            <Box key={n.to} component={NavLink} to={n.to} onClick={() => setMoreOpen(false)} sx={{
+              display: "flex", alignItems: "center", gap: 1.5, px: 1.6, py: 1.4, borderRadius: "12px",
+              color: "#9ca3af", textDecoration: "none", fontWeight: 700, fontSize: 14,
+              "&:hover, &.active": { color: "#fff", bgcolor: "rgba(255,255,255,0.06)" },
+              "&.active svg": { color: "#22d3ee" },
+            }}>
+              {n.icon} {n.label}
+            </Box>
+          ))}
+        </Box>
+      </Dialog>
     </Box>
   );
 }
