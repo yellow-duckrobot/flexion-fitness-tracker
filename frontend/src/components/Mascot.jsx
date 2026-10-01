@@ -56,7 +56,7 @@ export default function Mascot() {
         onClick={poke}
         title="Click me!"
         sx={{
-          position: "fixed", bottom: 16, left: 0, zIndex: 260,
+          position: "fixed", bottom: { xs: 78, md: 16 }, left: 0, zIndex: 260,
           fontSize: 34, cursor: "pointer", userSelect: "none",
           filter: "drop-shadow(0 4px 10px rgba(0,0,0,0.4))",
         }}
@@ -74,11 +74,11 @@ export default function Mascot() {
 
       <AnimatePresence>
         {quote && (
+          <div style={{ position: "fixed", top: "50%", right: 18, zIndex: 261, width: 280, transform: "translateY(-50%)" }}>
           <motion.div
             initial={{ opacity: 0, y: 16, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.9 }}
-            style={{ position: "fixed", bottom: 66, right: 18, zIndex: 261, width: 280 }}
           >
             <Box onClick={resume} sx={{
               background: "var(--chat-bg)", border: "1px solid rgba(34,211,238,0.4)",
@@ -91,6 +91,7 @@ export default function Mascot() {
               <Box sx={{ fontSize: 10, fontWeight: 700, color: "#22d3ee", mt: 0.8 }}>tap to keep running →</Box>
             </Box>
           </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </>
