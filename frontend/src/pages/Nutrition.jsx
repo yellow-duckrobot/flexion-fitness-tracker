@@ -15,7 +15,7 @@ import {
 } from "recharts";
 import { glassCard, GRADIENTS } from "../theme";
 
-const API = "https://sublime-grad-interventions-malpractice.trycloudflare.com//api";
+const API = "const API = "https://sublime-grad-interventions-malpractice.trycloudflare.com/api";/api";
 const authHeaders = () => ({
   "Content-Type": "application/json",
   Authorization: `Bearer ${localStorage.getItem("flexion_token")}`,

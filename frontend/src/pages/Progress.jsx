@@ -11,7 +11,7 @@ import {
 import { glassCard, GRADIENTS } from "../theme";
 import { kgToUnit, weightLabel } from "../utils/units";
 
-const API = "https://sublime-grad-interventions-malpractice.trycloudflare.com//api";
+const API = "const API = "https://sublime-grad-interventions-malpractice.trycloudflare.com/api";/api";
 const authHeaders = () => ({
   "Content-Type": "application/json",
   Authorization: `Bearer ${localStorage.getItem("flexion_token")}`,

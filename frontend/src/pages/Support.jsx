@@ -6,7 +6,7 @@ import {
 import { LifeBuoy, Bug, MessageSquareHeart, Send, CheckCircle2, Clock } from "lucide-react";
 import { glassCard, GRADIENTS } from "../theme";
 
-const API = "https://sublime-grad-interventions-malpractice.trycloudflare.com//api";
+const API = "const API = "https://sublime-grad-interventions-malpractice.trycloudflare.com/api";/api";
 const token = () => localStorage.getItem("flexion_token");
 
 const TYPES = [

@@ -9,7 +9,7 @@ import Coach from "./Coach";
 import Mascot from "./Mascot";
 import { GRADIENTS } from "../theme";
 
-const API = "https://sublime-grad-interventions-malpractice.trycloudflare.com//api";
+const API = "const API = "https://sublime-grad-interventions-malpractice.trycloudflare.com/api";/api";
 
 const NAV = [
   { to: "/dashboard", icon: <LayoutGrid size={20} />, label: "Dashboard" },
@@ -78,7 +78,7 @@ export default function AppLayout() {
     return () => window.removeEventListener("flexion-user-updated", refreshMe);
   }, []);
 
-  const avatarUrl = me.profilePicture ? `https://sublime-grad-interventions-malpractice.trycloudflare.com/${me.profilePicture}` : null;
+  const avatarUrl = me.profilePicture ? `const API = "https://sublime-grad-interventions-malpractice.trycloudflare.com/api";${me.profilePicture}` : null;
 
   const logout = () => {
     localStorage.removeItem("flexion_token");

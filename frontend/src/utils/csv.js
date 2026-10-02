@@ -26,7 +26,7 @@ const authHeaders = () => ({
 const d = (x) => (x ? new Date(x).toISOString().slice(0, 10) : "");
 
 export async function exportWorkoutsCSV() {
-  const res = await fetch("https://sublime-grad-interventions-malpractice.trycloudflare.com//api/workouts", { headers: authHeaders() });
+  const res = await fetch("const API = "https://sublime-grad-interventions-malpractice.trycloudflare.com/api";/api/workouts", { headers: authHeaders() });
   if (!res.ok) return alert("Export failed — are you logged in?");
   const data = await res.json();
   const items = Array.isArray(data) ? data : data.items;
@@ -42,7 +42,7 @@ export async function exportWorkoutsCSV() {
 }
 
 export async function exportMealsCSV() {
-  const res = await fetch("https://sublime-grad-interventions-malpractice.trycloudflare.com//api/nutrition", { headers: authHeaders() });
+  const res = await fetch("const API = "https://sublime-grad-interventions-malpractice.trycloudflare.com/api";/api/nutrition", { headers: authHeaders() });
   if (!res.ok) return alert("Export failed — are you logged in?");
   const data = await res.json();
   const items = Array.isArray(data) ? data : data.items;
@@ -57,7 +57,7 @@ export async function exportMealsCSV() {
 }
 
 export async function exportProgressCSV() {
-  const res = await fetch("https://sublime-grad-interventions-malpractice.trycloudflare.com//api/progress", { headers: authHeaders() });
+  const res = await fetch("const API = "https://sublime-grad-interventions-malpractice.trycloudflare.com/api";/api/progress", { headers: authHeaders() });
   if (!res.ok) return alert("Export failed — are you logged in?");
   const items = await res.json();
   downloadCSV(`flexion-progress-${new Date().toISOString().slice(0, 10)}.csv`,
