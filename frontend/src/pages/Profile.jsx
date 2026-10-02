@@ -4,7 +4,7 @@ import { Box, Typography, Avatar, Button, TextField, IconButton, Snackbar, Alert
 import { Camera, Pencil, Check, X, Flame, Dumbbell, CalendarDays } from "lucide-react";
 import { GRADIENTS } from "../theme";
 
-const API = "const API = "https://sublime-grad-interventions-malpractice.trycloudflare.com/api";/api";
+const API = "https://sublime-grad-interventions-malpractice.trycloudflare.com/api";
 const token = () => localStorage.getItem("flexion_token");
 
 const fadeUp = {
@@ -47,7 +47,7 @@ useEffect(() => {
     .catch((err) => setError("Couldn't load profile: " + err.message));
 }, []);
 
-  const avatarUrl = user?.profilePicture ? `const API = "https://sublime-grad-interventions-malpractice.trycloudflare.com/api";${user.profilePicture}` : null;
+  const avatarUrl = user?.profilePicture ? `https://sublime-grad-interventions-malpractice.trycloudflare.com${user.profilePicture}` : null;
 
   const uploadPicture = async (e) => {
     const file = e.target.files[0];

@@ -1,6 +1,6 @@
 # FLEXION — API Documentation (Developer Guide)
 
-Base URL: `const API = "https://sublime-grad-interventions-malpractice.trycloudflare.com/api";`
+Base URL: `https://sublime-grad-interventions-malpractice.trycloudflare.com`
 Auth: `Authorization: Bearer <JWT>` (get token from `/api/register` or `/api/login`)
 
 ## Auth

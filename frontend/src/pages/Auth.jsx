@@ -10,7 +10,7 @@ import confetti from "canvas-confetti";
 import { GRADIENTS } from "../theme";
 import { useNavigate } from "react-router-dom";
 
-const API = "const API = "https://sublime-grad-interventions-malpractice.trycloudflare.com/api";/api";
+const API = "https://sublime-grad-interventions-malpractice.trycloudflare.com/api";
 
 /* ---------- Left visual panel: floating glass stat chips ---------- */
 function VisualPanel() {

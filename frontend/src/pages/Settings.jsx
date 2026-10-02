@@ -11,7 +11,7 @@ import { exportWorkoutsCSV, exportMealsCSV, exportProgressCSV } from "../utils/c
 import { glassCard, GRADIENTS } from "../theme";
 import { requestNotificationPermission } from "../utils/reminders";
 
-const API = "const API = "https://sublime-grad-interventions-malpractice.trycloudflare.com/api";/api";
+const API = "https://sublime-grad-interventions-malpractice.trycloudflare.com/api";
 const authHeaders = () => ({
   "Content-Type": "application/json",
   Authorization: `Bearer ${localStorage.getItem("flexion_token")}`,
@@ -375,7 +375,7 @@ export default function Settings() {
                 </Button>
                 <Button fullWidth variant="contained" disabled={deleting} onClick={async () => {
                     setDeleting(true);
-                    const res = await fetch("const API = "https://sublime-grad-interventions-malpractice.trycloudflare.com/api";/api/users/me", {
+                    const res = await fetch("https://sublime-grad-interventions-malpractice.trycloudflare.com/api/users/me", {
                       method: "DELETE",
                       headers: { Authorization: `Bearer ${localStorage.getItem("flexion_token")}` },
                     });

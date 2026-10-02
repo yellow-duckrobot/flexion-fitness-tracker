@@ -20,7 +20,7 @@ function Protected({ children }) {
 
   useEffect(() => {
     if (!token) return setStatus("out");
-    fetch("const API = "https://sublime-grad-interventions-malpractice.trycloudflare.com/api";/api/users/me", {
+    fetch("https://sublime-grad-interventions-malpractice.trycloudflare.com/api/users/me", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((r) => {
