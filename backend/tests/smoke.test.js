@@ -3,7 +3,7 @@
 const { test, before, after } = require("node:test");
 const assert = require("node:assert");
 
-const BASE = process.env.BASE_URL || "https://wiring-archive-lenses-furnished.trycloudflare.com";
+const BASE = process.env.BASE_URL || "https://sublime-grad-interventions-malpractice.trycloudflare.com/";
 const suffix = Date.now();
 const TEST_USER = {
   name: "Test Runner",

@@ -1,6 +1,6 @@
 # FLEXION — API Documentation (Developer Guide)
 
-Base URL: `https://wiring-archive-lenses-furnished.trycloudflare.com`
+Base URL: `https://sublime-grad-interventions-malpractice.trycloudflare.com/`
 Auth: `Authorization: Bearer <JWT>` (get token from `/api/register` or `/api/login`)
 
 ## Auth
