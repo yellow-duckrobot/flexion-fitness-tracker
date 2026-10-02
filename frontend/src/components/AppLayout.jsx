@@ -9,7 +9,7 @@ import Coach from "./Coach";
 import Mascot from "./Mascot";
 import { GRADIENTS } from "../theme";
 
-const API = "https://sublime-grad-interventions-malpractice.trycloudflare.com/api";
+const API = "http://localhost:5000/api";
 
 const NAV = [
   { to: "/dashboard", icon: <LayoutGrid size={20} />, label: "Dashboard" },
@@ -78,7 +78,7 @@ export default function AppLayout() {
     return () => window.removeEventListener("flexion-user-updated", refreshMe);
   }, []);
 
-  const avatarUrl = me.profilePicture ? `https://sublime-grad-interventions-malpractice.trycloudflare.com${me.profilePicture}` : null;
+  const avatarUrl = me.profilePicture ? `http://localhost:5000${me.profilePicture}` : null;
 
   const logout = () => {
     localStorage.removeItem("flexion_token");
@@ -87,7 +87,7 @@ export default function AppLayout() {
   };
 
   return (
-    <Box sx={{ minHeight: "100vh", bgcolor: "background.default" }}>
+    <Box sx={{ minHeight: "100vh", bgcolor: "background.default", overflowX: "hidden", width: "100%", position: "relative" }}>
       {/* Sidebar — fixed, always full height, solid background */}
       <Box sx={{
         display: { xs: "none", md: "flex" },
@@ -124,7 +124,7 @@ export default function AppLayout() {
       </Box>
 
       {/* Main content — offset by sidebar width on desktop */}
-      <Box sx={{ ml: { xs: 0, md: "230px" }, pb: { xs: 9, md: 0 }, minHeight: "100vh" }}>
+      <Box sx={{ ml: { xs: 0, md: "230px" }, pb: { xs: 9, md: 0 }, minHeight: "100vh", maxWidth: "100vw", overflowX: "hidden" }}>
         <Outlet />
       </Box>
 

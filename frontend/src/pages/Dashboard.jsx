@@ -18,7 +18,7 @@ import { kgToUnit, weightLabel } from "../utils/units";
 import ActivityHeatmap from "../components/ActivityHeatmap";
 import { GOAL_PLANS } from "../utils/goals";
 
-const API = "https://sublime-grad-interventions-malpractice.trycloudflare.com/api";
+const API = "http://localhost:5000/api";
 const authHeaders = () => ({
   "Content-Type": "application/json",
   Authorization: `Bearer ${localStorage.getItem("flexion_token")}`,
@@ -102,7 +102,7 @@ export default function Dashboard() {
   const confettiFired = useRef(false);
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("flexion_user") || "{}");
-  const avatarUrl = user.profilePicture ? `https://sublime-grad-interventions-malpractice.trycloudflare.com${user.profilePicture}` : null;
+  const avatarUrl = user.profilePicture ? `http://localhost:5000${user.profilePicture}` : null;
 
   const [workouts, setWorkouts] = useState([]);
   const [meals, setMeals] = useState([]);
@@ -385,7 +385,7 @@ export default function Dashboard() {
                           <Typography sx={{ fontSize: 10.5, fontWeight: 800, color: "text.disabled", letterSpacing: "0.1em", px: 1, py: 0.6 }}>USERS</Typography>
                           {results.users.map((u) => (
                             <Box key={u._id} sx={{ display: "flex", alignItems: "center", gap: 1.2, px: 1, py: 0.9, borderRadius: "10px" }}>
-                              <Avatar src={u.profilePicture ? `https://sublime-grad-interventions-malpractice.trycloudflare.com${u.profilePicture}` : null}
+                              <Avatar src={u.profilePicture ? `http://localhost:5000${u.profilePicture}` : null}
                                 sx={{ width: 26, height: 26, fontSize: 12, fontWeight: 800, background: GRADIENTS.fire }}>
                                 {u.name?.charAt(0).toUpperCase()}
                               </Avatar>
@@ -474,7 +474,7 @@ export default function Dashboard() {
       )}
 
       {/* ============ GRID ============ */}
-      <Box sx={{ display: "grid", gap: 2.5, gridTemplateColumns: { xs: "1fr", md: "repeat(12, 1fr)" } }}>
+      <Box sx={{ display: "grid", gap: 2.5, gridTemplateColumns: { xs: "minmax(0, 1fr)", md: "repeat(12, 1fr)" }, minWidth: 0 }}>
         {/* Fitness score — computed from real activity */}
         <Box sx={{ gridColumn: { md: "span 4" } }}>
           <Card i={1} sx={{
@@ -894,3 +894,4 @@ export default function Dashboard() {
     </Box>
   );
 }
+

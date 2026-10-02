@@ -110,3 +110,8 @@ html, body { overflow-x: hidden; max-width: 100vw; }
   border-radius: 4px;
   z-index: 1;
 }
+
+/* hard overflow guard: nothing may exceed viewport width */
+html, body, #root { max-width: 100vw; overflow-x: clip; }
+* { max-width: 100vw; }
+img, svg, video, canvas { max-width: 100%; height: auto; }
